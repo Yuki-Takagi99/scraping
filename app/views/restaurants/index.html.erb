@@ -3,13 +3,11 @@
 <table>
   <tr>
     <th>店名</th>
-    <th>住所</th>
   </tr>
 
   <% @restaurants.each do |restaurant| %>
     <tr>
-      <td><%= restaurant.name %></td>
-      <td>***</td>
+      <td><%= link_to restaurant.name, restaurant_path(restaurant) %></td>
     </tr>
   <% end %>
 </table>
