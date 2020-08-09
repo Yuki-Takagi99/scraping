@@ -15,15 +15,15 @@ namespace :scrape do
     # htmlをパースしてオブジェクト生成
     doc = Nokogiri::HTML.parse(html, nil, charset)
 
-    restaurants = []
+    store_names = []
 
     doc.xpath('//*[@class="list-rst__rst-name"]').each do |node|
       # 店名の取得
-      restaurants << node.css("a").inner_text
+      store_names << node.css("a").inner_text
     end
     # 先頭から10件の店名を取得し、DBに保存
-    restaurants = restaurants.take(10)
-    restaurants.each do |store_name|
+    store_names = store_names.take(10)
+    store_names.each do |store_name|
       restaurant = Restaurant.new
       restaurant.name = store_name
       restaurant.save
